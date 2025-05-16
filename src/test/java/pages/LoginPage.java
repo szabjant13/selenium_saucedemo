@@ -18,6 +18,9 @@ public class LoginPage {
     @FindBy(xpath = "//input[@id='login-button']")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//h3[@data-test='error']")
+    private WebElement errorBox;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
@@ -36,5 +39,14 @@ public class LoginPage {
         loginButton.click();
     }
 
+    public String getErrorMessageFromErrorBox(){
+        return errorBox.getText();
+    }
+
+    public void loginFlow(String username, String password){
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
 
 }
