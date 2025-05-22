@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.TestDataHelper;
 
 public class InventoryTest extends BaseTest {
 
@@ -12,8 +13,8 @@ public class InventoryTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         InventoryPage inventoryPage = new InventoryPage(driver);
         CartPage cartPage = new CartPage(driver);
-        driver.get("https://www.saucedemo.com");
-        loginPage.loginFlow("standard_user","secret_sauce");
+        driver.get(TestDataHelper.getData("url"));
+        loginPage.loginFlow(TestDataHelper.getData("validUsername"),TestDataHelper.getData("validPassword"));
         inventoryPage.clickAddToCartBackpackButton();
         inventoryPage.clickShoppingCartIcon();
         Assert.assertTrue(cartPage.isRemoveBackpackButtonVisible());
@@ -24,8 +25,8 @@ public class InventoryTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         InventoryPage inventoryPage = new InventoryPage(driver);
         CartPage cartPage = new CartPage(driver);
-        driver.get("https://www.saucedemo.com");
-        loginPage.loginFlow("standard_user","secret_sauce");
+        driver.get(TestDataHelper.getData("url"));
+        loginPage.loginFlow(TestDataHelper.getData("validUsername"),TestDataHelper.getData("validPassword"));
         inventoryPage.clickAddToCartBackpackButton();
         inventoryPage.clickShoppingCartIcon();
         Assert.assertTrue(cartPage.isRemoveBackpackButtonVisible());
@@ -43,18 +44,17 @@ public class InventoryTest extends BaseTest {
         CheckoutInfoPage checkoutInfoPage = new CheckoutInfoPage(driver);
         CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
         CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage(driver);
-        driver.get("https://www.saucedemo.com");
-        loginPage.loginFlow("standard_user","secret_sauce");
+        driver.get(TestDataHelper.getData("url"));
+        loginPage.loginFlow(TestDataHelper.getData("validUsername"),TestDataHelper.getData("validPassword"));
         inventoryPage.clickAddToCartBackpackButton();
         inventoryPage.clickShoppingCartIcon();
         Assert.assertTrue(cartPage.isRemoveBackpackButtonVisible());
         cartPage.clickCheckoutButton();
-        checkoutInfoPage.enterFirstName("teszt");
-        checkoutInfoPage.enterLastName("lastname");
-        checkoutInfoPage.enterZipCode("1234");
+        checkoutInfoPage.enterFirstName(TestDataHelper.getData("orderFirstname"));
+        checkoutInfoPage.enterLastName(TestDataHelper.getData("orderLastName"));
+        checkoutInfoPage.enterZipCode(TestDataHelper.getData("zipCode"));
         checkoutInfoPage.clickContinueButton();
         checkoutOverviewPage.clickFinishButton();
-        System.out.println(checkoutCompletePage.getOrderDispatchedText());
-        Assert.assertEquals(checkoutCompletePage.getOrderDispatchedText(),"Your order has been dispatched, and will arrive just as fast as the pony can get there!", "The text was not correctly shown");
+        Assert.assertEquals(checkoutCompletePage.getOrderDispatchedText(), TestDataHelper.getData("orderDispatchedMessage"), "The text was not correctly shown");
     }
 }

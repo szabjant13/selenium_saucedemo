@@ -1,0 +1,13 @@
+{
+  "url": "https://www.saucedemo.com",
+  "validUsername": "standard_user",
+  "validPassword": "secret_sauce",
+  "invalidUsername": "invalidUser",
+  "lockedUser": "locked_out_user",
+  "wrongCredentialsErrorMessage": "Epic sadface: Username and password do not match any user in this service",
+  "lockedOutUserErrorMessage": "Epic sadface: Sorry, this user has been locked out.",
+  "orderDispatchedMessage": "Your order has been dispatched, and will arrive just as fast as the pony can get there!",
+  "orderFirstName": "John",
+  "oderLastName": "Doe",
+  "zipCode": "1234"
+}
